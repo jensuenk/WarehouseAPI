@@ -37,8 +37,8 @@ namespace WarehouseAPI
                     Tel = "238271262891"
                     // TODO: Add order
                 };
+                context.Users.Add(user);
             };
-            context.Users.Add(user);
 
 
             Order order = null;

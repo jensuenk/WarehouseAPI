@@ -17,6 +17,7 @@ namespace WarehouseAPI
             {
                 product = new Product
                 {
+                    Number = "23131",
                     Name = "Logitec G502 Mouse",
                     Description = "placeholder description",
                     Location = "10A2B",

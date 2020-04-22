@@ -141,8 +141,6 @@
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.csproj.CoreCompileInputs.cache
-\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.MvcApplicationPartsAssemblyInfo.cache
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\WarehouseAPI.Views.dll
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\WarehouseAPI.Views.pdb
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.RazorAssemblyInfo.cache

@@ -7,21 +7,21 @@ namespace WarehouseAPI.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class UsersController : Controller
+    public class OrderController : Controller
     {
         private readonly WarehouseContext context;
 
-        public UsersController(WarehouseContext context)
+        public OrderController(WarehouseContext context)
         {
             this.context = context;
         }
 
         [HttpGet]
-        public List<User> GetUsers()
+        public List<User> GetOrders()
         {
 
             //return this.context.Users.Include(o => o.Orders).ToList();
-            return this.context.Users.ToList();
+            return this.context.Orders.ToList();
 
         }
     }

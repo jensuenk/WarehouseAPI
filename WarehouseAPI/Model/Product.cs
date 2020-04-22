@@ -16,6 +16,7 @@ namespace WarehouseAPI.Model
         public string Description { get; set; }
         [Required]
         public string Location { get; set; }
+        [Required]
         [Range(0.0, 100000.0)]
         public double Price { get; set; }
     }

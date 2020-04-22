@@ -14,6 +14,9 @@ namespace WarehouseAPI.Model
         public Product ProductId { get; set; }
         [Required]
         public User UserId { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
+        [Required]
         [Range(0.0, 100000.0)]
         public int Amount { get; set; }
     }

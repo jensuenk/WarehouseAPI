@@ -70,13 +70,9 @@ namespace WarehouseAPI.Controllers
         public IActionResult GetProduct(int id)
         {
             var product = context.Products.Find(id);
-            /*
-            var product = context.Products
-            .Include(d => d.User)
-            .SingleOrDefault(d => d.Id == id);
-             */
             if (product == null)
                 return NotFound();
+
             return Ok(product);
         }
 
@@ -92,7 +88,7 @@ namespace WarehouseAPI.Controllers
         }
 
         [Route("{id}")]
-        [HttpGet]
+        [HttpDelete]
         public IActionResult DeleteProduct(int id)
         {
             var product = context.Products.Find(id);
@@ -104,12 +100,11 @@ namespace WarehouseAPI.Controllers
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpPut]
         public IActionResult UpdateProduct([FromBody] Product updateProduct)
         {
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            //if (!ModelState.IsValid)
+            //    return BadRequest(ModelState);
 
             var product = context.Products.Find(updateProduct.Id);
             if (product == null)

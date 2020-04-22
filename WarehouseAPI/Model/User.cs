@@ -18,6 +18,7 @@ namespace WarehouseAPI.Model
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        [Required]
         [Phone]
         public string Tel { get; set; }
     }

@@ -7,11 +7,11 @@ namespace WarehouseAPI.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class UsersController : Controller
+    public class UserController : Controller
     {
         private readonly WarehouseContext context;
 
-        public UsersController(WarehouseContext context)
+        public UserController(WarehouseContext context)
         {
             this.context = context;
         }
@@ -83,7 +83,7 @@ namespace WarehouseAPI.Controllers
             if (user == null)
                 return NotFound();
 
-            context.Products.Remove(user);
+            context.Users.Remove(user);
             context.SaveChanges();
             return NoContent();
         }

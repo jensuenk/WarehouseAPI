@@ -18,6 +18,36 @@ namespace WarehouseAPI.Controllers
         }
 
         [HttpGet]
+        public List<Order> GetOrders(string date, string sort, int? page, int length = 2, string dir = "asc")
+        {
+            IQueryable<Order> query = context.Orders;
+
+            if (!string.IsNullOrWhiteSpace(date))
+                query = query.Where(d => d.Date.ToString() == date);
+
+            if (!string.IsNullOrWhiteSpace(sort))
+            {
+                switch (sort)
+                {
+                    case "date":
+                        if (dir == "asc")
+                            query = query.OrderBy(d => d.Date);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(d => d.Date);
+                        break;
+                }
+            }
+
+            if (page.HasValue)
+                query = query.Skip(page.Value * length);
+            query = query.Take(length);
+
+            return query
+                .Include(d => d.UserId)
+                .Include(d => d.ProductId)
+                .ToList();
+        }
+        /*
         public List<Order> GetOrders(string date, User user, Product product, string sort, int? page, int length = 2, string dir = "asc")
         {
             IQueryable<Order> query = context.Orders;
@@ -58,17 +88,24 @@ namespace WarehouseAPI.Controllers
                 query = query.Skip(page.Value * length);
             query = query.Take(length);
 
-            return query.Include(d => d.UserId).Include(d => d.ProductId).ToList();
+            //return query.Include(d => d.UserId).Include(d => d.ProductId).ToList();
+            return query.ToList();
         }
+        */
 
         [Route("{id}")]
         [HttpGet]
         public IActionResult GetOrder(int id)
         {
-            var order = context.Orders.Include(d => d.UserId)
+            
+            var order = context.Orders
+                .Include(d => d.UserId)
                 .Include(d => d.ProductId)
                 .SingleOrDefault(d => d.Id == id);
-             
+                
+            //var order = context.Orders.SingleOrDefault(d => d.Id == id);
+
+
             if (order == null)
                 return NotFound();
 

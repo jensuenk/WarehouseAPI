@@ -156,3 +156,5 @@
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\Razor\Views\Users\Index.cshtml.g.cs
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.RazorTargetAssemblyInfo.cs
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.Views.pdb
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.MvcApplicationPartsAssemblyInfo.cache

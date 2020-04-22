@@ -78,9 +78,6 @@ namespace WarehouseAPI.Controllers
         [HttpPost]
         public IActionResult NewOrder([FromBody] Order newOrder)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             context.Orders.Add(newOrder);
             context.SaveChanges();
             return Created("", newOrder);

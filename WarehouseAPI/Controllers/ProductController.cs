@@ -79,9 +79,6 @@ namespace WarehouseAPI.Controllers
         [HttpPost]
         public IActionResult NewProduct([FromBody] Product newProduct)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             context.Products.Add(newProduct);
             context.SaveChanges();
             return Created("", newProduct);
@@ -103,9 +100,6 @@ namespace WarehouseAPI.Controllers
         [HttpPut]
         public IActionResult UpdateProduct([FromBody] Product updateProduct)
         {
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState);
-
             var product = context.Products.Find(updateProduct.Id);
             if (product == null)
                 return NotFound();

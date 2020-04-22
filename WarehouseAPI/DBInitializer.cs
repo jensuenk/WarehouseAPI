@@ -24,6 +24,15 @@ namespace WarehouseAPI
                     Price = 59.99
                 };
                 context.Products.Add(product);
+                product = new Product
+                {
+                    Number = "83292",
+                    Name = "Lego Crane",
+                    Description = "placeholder description",
+                    Location = "11A1C",
+                    Price = 109.99
+                };
+                context.Products.Add(product);
             }
 
             User user = null;
@@ -36,7 +45,15 @@ namespace WarehouseAPI
                     Email = "random@email.com",
                     Address = "address here",
                     Tel = "238271262891"
-                    // TODO: Add order
+                };
+                context.Users.Add(user);
+                user = new User
+                {
+                    Name = "Verhelst",
+                    FirstName = "Frans",
+                    Email = "random@email.com",
+                    Address = "address here",
+                    Tel = "238271262891"
                 };
                 context.Users.Add(user);
             };
@@ -47,16 +64,14 @@ namespace WarehouseAPI
             {
                 order = new Order
                 {
-                    Product = product,
-                    User = user,
-                    Amount = 1
+                    ProductId = product,
+                    UserId = user,
+                    Amount = 1,
+                    Date = DateTime.Now
                 };
                 context.Orders.Add(order);
-
-
-                context.SaveChanges();
             }
-
+            context.SaveChanges();
         }
     }
 }

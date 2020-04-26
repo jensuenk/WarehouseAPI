@@ -1,4 +1,4 @@
-<p-panel header="Product List">
+<p-panel header="Product List" *ngIf="products">
     <table>
         <thead>
             <tr>
@@ -8,17 +8,32 @@
                 <th>Description</th>
                 <th>Location</th>
                 <th>Price</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let product of products">
-                <td>{{product.id}}</td>
-                <td>{{product.number}}</td>
-                <td>{{product.name }}</td>
-                <td>{{product.description }}</td>
-                <td>{{product.location }}</td>
-                <td>{{product.price }}</td>
+                <td><input type="text" name="product-id" [(ngModel)]="product.id"></td>
+                <td><input type="text" name="product-number" [(ngModel)]="product.number"></td>
+                <td><input type="text" name="product-name" [(ngModel)]="product.name"></td>
+                <td><input type="text" name="product-description" [(ngModel)]="product.description"></td>
+                <td><input type="text" name="product-location" [(ngModel)]="product.location"></td>
+                <td><input type="text" name="product-price" [(ngModel)]="product.price"></td>
+                <td><button (click)="updateProduct(product)">Save</button></td>
++               <td><button (click)="deleteProduct(product)">Delete</button></td>
             </tr>
+        </tbody>
+    </table>
+    <p>Create a new food: <input type="text" name="food_name" [(ngModel)]="food_name"><button (click)="createFood(food_name)">Save</button></p>
+    <table>
+        <tbody>
+            <td><input type="text" name="product-number" [(ngModel)]="product-number"></td>
+            <td><input type="text" name="product-name" [(ngModel)]="product-name"></td>
+            <td><input type="text" name="product-description" [(ngModel)]="product-description"></td>
+            <td><input type="text" name="product-location" [(ngModel)]="product-location"></td>
+            <td><input type="text" name="product-price" [(ngModel)]="product-price"></td>
+            <td><button (click)="createProduct(product-number, product-name, product-description, product-location, product-price)">Create</button></td>
         </tbody>
     </table>
 </p-panel>

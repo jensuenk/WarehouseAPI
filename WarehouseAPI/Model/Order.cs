@@ -8,6 +8,7 @@ namespace WarehouseAPI.Model
 {
     public class Order
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

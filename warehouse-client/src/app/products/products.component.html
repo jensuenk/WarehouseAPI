@@ -1,0 +1,24 @@
+<p-panel header="Product List">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{product.id}}</td>
+                <td>{{product.number}}</td>
+                <td>{{product.name }}</td>
+                <td>{{product.description }}</td>
+                <td>{{product.location }}</td>
+                <td>{{product.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+</p-panel>

@@ -145,7 +145,7 @@ namespace WarehouseAPI.Controllers
 
             order.UserId = updateOrder.UserId;
             order.ProductId = updateOrder.ProductId;
-            order.Amount = updateOrder.Amount;
+            order.Total = updateOrder.Total;
             order.Date = updateOrder.Date;
 
             context.SaveChanges();

@@ -66,7 +66,7 @@ namespace WarehouseAPI
                 {
                     ProductId = product,
                     UserId = user,
-                    Amount = 1,
+                    Total = 1,
                     Date = DateTime.Now
                 };
                 context.Orders.Add(order);

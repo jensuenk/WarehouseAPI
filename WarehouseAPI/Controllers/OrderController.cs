@@ -44,7 +44,7 @@ namespace WarehouseAPI.Controllers
 
             return query
                 .Include(d => d.UserId)
-                .Include(d => d.ProductId)
+                //.Include(d => d.ProductId)
                 .ToList();
         }
         /*
@@ -100,7 +100,7 @@ namespace WarehouseAPI.Controllers
             
             var order = context.Orders
                 .Include(d => d.UserId)
-                .Include(d => d.ProductId)
+                //.Include(d => d.ProductId)
                 .SingleOrDefault(d => d.Id == id);
                 
             //var order = context.Orders.SingleOrDefault(d => d.Id == id);
@@ -144,8 +144,8 @@ namespace WarehouseAPI.Controllers
                 return NotFound();
 
             order.UserId = updateOrder.UserId;
-            order.ProductId = updateOrder.ProductId;
-            order.Total = updateOrder.Total;
+            //order.ProductId = updateOrder.ProductId;
+            //order.Total = updateOrder.Total;
             order.Date = updateOrder.Date;
 
             context.SaveChanges();

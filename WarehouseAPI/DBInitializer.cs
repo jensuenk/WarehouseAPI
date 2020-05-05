@@ -12,29 +12,6 @@ namespace WarehouseAPI
         {
             context.Database.EnsureCreated();
 
-            Product product = null;
-            if (!context.Products.Any())
-            {
-                product = new Product
-                {
-                    Number = "23131",
-                    Name = "Logitec G502 Mouse",
-                    Description = "placeholder description",
-                    Location = "10A2B",
-                    Price = 59.99
-                };
-                context.Products.Add(product);
-                product = new Product
-                {
-                    Number = "83292",
-                    Name = "Lego Crane",
-                    Description = "placeholder description",
-                    Location = "11A1C",
-                    Price = 109.99
-                };
-                context.Products.Add(product);
-            }
-
             User user = null;
             if (!context.Users.Any())
             {
@@ -64,13 +41,59 @@ namespace WarehouseAPI
             {
                 order = new Order
                 {
-                    ProductId = product,
+                    //ProductId = product,
                     UserId = user,
-                    Total = 1,
+                    //Total = 1,
                     Date = DateTime.Now
                 };
                 context.Orders.Add(order);
             }
+            Product product = null;
+            if (!context.Products.Any())
+            {
+                product = new Product
+                {
+                    Number = "23131",
+                    Name = "Logitec G502 Mouse",
+                    Description = "placeholder description",
+                    Location = "10A2B",
+                    Price = 59.99
+                };
+                /*
+                context.Products.Add(product);
+                product = new Product
+                {
+                    Number = "83292",
+                    Name = "Lego Crane",
+                    Description = "placeholder description",
+                    Location = "11A1C",
+                    Price = 109.99
+                };
+                */
+                context.Products.Add(product);
+            }
+            ProductOrder productorder = null;
+            if (!context.ProductOrders.Any())
+            {
+                productorder = new ProductOrder
+                {
+                    ProductId = product,
+                    OrderId = order
+                };
+                /*
+                context.Products.Add(product);
+                product = new Product
+                {
+                    Number = "83292",
+                    Name = "Lego Crane",
+                    Description = "placeholder description",
+                    Location = "11A1C",
+                    Price = 109.99
+                };
+                */
+                context.ProductOrders.Add(productorder);
+            }
+
             context.SaveChanges();
         }
     }

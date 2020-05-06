@@ -1,0 +1,42 @@
+<p-panel header="Users List" *ngIf="users">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>First Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Tel</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td><input type="text" disabled name="id" value={{user.id}} [(ngModel)]="user.id"></td>
+                <td><input type="text" name="name" value={{user.name}} [(ngModel)]="user.name"></td>
+                <td><input type="text" name="firstName" value={{user.firstName}} [(ngModel)]="user.firstName"></td>
+                <td><input type="text" name="address" value={{user.address}} [(ngModel)]="user.address"></td>
+                <td><input type="text" name="email" value={{user.email}} [(ngModel)]="user.email"></td>
+                <td><input type="text" name="tel" value={{user.tel}} [(ngModel)]="user.tel"></td>
+                <td><button (click)="updateUser(user)">Save</button></td>
++               <td><button (click)="deleteUser(user)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Create a new user:</p>
+    <table>
+        <tbody>
+            <td><input type="text" disabled name="id" [(ngModel)]="id"></td>
+            <td><input type="text" name="name" [(ngModel)]="name"></td>
+            <td><input type="text" name="firstName" [(ngModel)]="firstName"></td>
+            <td><input type="text" name="address" [(ngModel)]="address"></td>
+            <td><input type="text" name="email" [(ngModel)]="email"></td>
+            <td><input type="text" name="tel" [(ngModel)]="tel"></td>
+            <td><button (click)="createUser(name, firstName, address, email, tel)">Create</button></td>
+        </tbody>
+    </table>
+    <p-message *ngIf="errorMessage" severity="error" text="{{errorMessage}}"></p-message>  
+    <p-message *ngIf="successMessage" severity="success" text="{{successMessage}}"></p-message>  
+</p-panel>

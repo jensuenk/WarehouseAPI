@@ -17,7 +17,7 @@ namespace WarehouseAPI.Controllers
         }
 
         [HttpGet]
-        public List<User> GetUsers(string name, string firstName, string email, string address, string sort, int? page, int length = 2, string dir = "asc")
+        public List<User> GetUsers(string name, string firstName, string email, string address, string sort, int? page, int length = 100, string dir = "asc")
         {
             IQueryable<User> query = context.Users;
 
@@ -80,6 +80,18 @@ namespace WarehouseAPI.Controllers
         public IActionResult DeleteUser(int id)
         {
             var user = context.Users.Find(id);
+            if (user == null)
+                return NotFound();
+
+            context.Users.Remove(user);
+            context.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteUser([FromBody] User deleteUser)
+        {
+            var user = context.Users.Find(deleteUser.Id);
             if (user == null)
                 return NotFound();
 

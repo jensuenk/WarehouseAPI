@@ -13,6 +13,17 @@ export class UsersComponent implements OnInit {
   errorMessage: string
   successMessage: string
 
+  filterId: string = "";
+  filterName: string = "";
+  filterFirstName: string = "";
+  filterAddress: string = "";
+  filterEmail: string = "";
+  filterTel: string = "";
+  filterSort: string = "";
+  filterPage: string = "";
+  filterLength: string = "";
+  filterDir: string = "";
+
   constructor(private svc : UserService) { }
 
   ngOnInit() {
@@ -21,8 +32,8 @@ export class UsersComponent implements OnInit {
     this.successMessage = "";
   }
 
-  getUsers() {
-    this.svc.getUsers().subscribe(
+  getUsers(urlArgs: string = "") {
+    this.svc.getUsers(urlArgs).subscribe(
         result => {
           this.users = result
           return true;
@@ -34,6 +45,7 @@ export class UsersComponent implements OnInit {
         }
     );
   }
+
 
   createUser(name, firstName, address, email, tel) {
     let newUser: IUser = {
@@ -98,5 +110,43 @@ export class UsersComponent implements OnInit {
   showSuccess(message: string) {
     this.errorMessage = "";
     this.successMessage = message;
+  }
+
+  filter() {
+    var urlArgs: string = "?";
+    if (this.filterId != "" && this.filterId != null) {
+      urlArgs += "id=" + this.filterId + "&"
+    }
+    if (this.filterName != "") {
+      urlArgs += "name=" + this.filterName + "&"
+    }
+    if (this.filterFirstName != "") {
+      urlArgs += "firstName=" + this.filterFirstName + "&"
+    }
+    if (this.filterAddress != "") {
+      urlArgs += "address=" + this.filterAddress + "&"
+    }
+    if (this.filterEmail != "") {
+      urlArgs += "email=" + this.filterEmail + "&"
+    }
+    if (this.filterTel != "") {
+      urlArgs += "tel=" + this.filterTel + "&"
+    }
+    if (this.filterSort != "") {
+      urlArgs += "sort=" + this.filterSort + "&"
+    }
+    if (this.filterPage != "") {
+      urlArgs += "page=" + this.filterPage + "&"
+    }
+    if (this.filterLength != "") {
+      urlArgs += "length=" + this.filterLength + "&"
+    }
+    if (this.filterDir != "") {
+      urlArgs += "dir=" + this.filterDir + "&"
+    }
+  
+    urlArgs = urlArgs.substring(0, urlArgs.length - 1);
+    this.getUsers(urlArgs);
+    
   }
 }

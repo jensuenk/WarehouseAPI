@@ -13,7 +13,9 @@ import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-import { UsersComponent } from './users/users.component';
+import {UsersComponent } from './users/users.component';
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { UsersComponent } from './users/users.component';
     TableModule,
     FormsModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    InputTextModule,
+    ButtonModule
   ],
   providers: [
     ProductService

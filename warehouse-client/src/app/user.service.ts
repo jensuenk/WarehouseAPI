@@ -11,15 +11,13 @@ const httpOptions = {
 })
 
 export class UserService {
-  private url = "https://192.168.0.158:45455/api/v1/user/";
+  private url = "https://192.168.0.158:45455/api/v1/user";
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<IUser> {
-    return this.http.get<IUser>(this.url)
-  }
-  getUser(id: number): Observable<IUser> {
-    return this.http.get<IUser>(this.url + "id=" + id)
+  getUsers(args: string): Observable<IUser> {
+    console.log(this.url + args);
+    return this.http.get<IUser>(this.url + args)
   }
 
   createUser(user: IUser) {

@@ -1,3 +1,24 @@
+<p-panel header="Search filter" *ngIf="users">
+    <table>
+        <tbody>
+            <tr>
+                <td><input pInputText type="number" placeholder="id" name="id" [(ngModel)]="filterId"></td>
+                <td><input pInputText type="text" placeholder="name" name="name" [(ngModel)]="filterName"></td>
+                <td><input pInputText type="text" placeholder="firstName" name="firstName" [(ngModel)]="filterFirstName"></td>
+                <td><input pInputText type="text" placeholder="address" name="address" [(ngModel)]="filterAddress"></td>
+                <td><input pInputText type="text" placeholder="email" name="email" [(ngModel)]="filterEmail"></td>
+                <td><input pInputText type="text" placeholder="tel" name="tel" [(ngModel)]="filterTel"></td>
+            </tr>
+            <tr>
+                <td><input pInputText type="text" placeholder="sort" name="sort" [(ngModel)]="filterSort"></td>
+                <td><input pInputText type="text" placeholder="page" name="page" [(ngModel)]="filterPage"></td>
+                <td><input pInputText type="text" placeholder="length" name="length" [(ngModel)]="filterLength"></td>
+                <td><input pInputText type="text" placeholder="dir" name="dir" [(ngModel)]="filterDir"></td>
+                <td><p-button label="Filter" (click)="filter()"></p-button><td>
+            </tr>
+        </tbody>
+    </table>
+</p-panel>
 <p-panel header="Users List" *ngIf="users">
     <table>
         <thead>
@@ -14,29 +35,30 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
-                <td><input type="text" disabled name="id" value={{user.id}} [(ngModel)]="user.id"></td>
-                <td><input type="text" name="name" value={{user.name}} [(ngModel)]="user.name"></td>
-                <td><input type="text" name="firstName" value={{user.firstName}} [(ngModel)]="user.firstName"></td>
-                <td><input type="text" name="address" value={{user.address}} [(ngModel)]="user.address"></td>
-                <td><input type="text" name="email" value={{user.email}} [(ngModel)]="user.email"></td>
-                <td><input type="text" name="tel" value={{user.tel}} [(ngModel)]="user.tel"></td>
-                <td><button (click)="updateUser(user)">Save</button></td>
-+               <td><button (click)="deleteUser(user)">Delete</button></td>
+                <td><input pInputText type="text" disabled name="id" value={{user.id}} [(ngModel)]="user.id"></td>
+                <td><input pInputText type="text" name="name" value={{user.name}} [(ngModel)]="user.name"></td>
+                <td><input pInputText type="text" name="firstName" value={{user.firstName}} [(ngModel)]="user.firstName"></td>
+                <td><input pInputText type="text" name="address" value={{user.address}} [(ngModel)]="user.address"></td>
+                <td><input pInputText type="text" name="email" value={{user.email}} [(ngModel)]="user.email"></td>
+                <td><input pInputText type="text" name="tel" value={{user.tel}} [(ngModel)]="user.tel"></td>
+                <td><p-button label="Save" styleClass="ui-button-success" (click)="updateUser(user)"></p-button><td>
+                <td><p-button label="Delete" styleClass="ui-button-danger" (click)="deleteUser(user)"></p-button><td>
             </tr>
         </tbody>
     </table>
-    <p>Create a new user:</p>
+</p-panel>
+<p-panel header="Delete User" *ngIf="users">
     <table>
         <tbody>
-            <td><input type="text" disabled name="id" [(ngModel)]="id"></td>
-            <td><input type="text" name="name" [(ngModel)]="name"></td>
-            <td><input type="text" name="firstName" [(ngModel)]="firstName"></td>
-            <td><input type="text" name="address" [(ngModel)]="address"></td>
-            <td><input type="text" name="email" [(ngModel)]="email"></td>
-            <td><input type="text" name="tel" [(ngModel)]="tel"></td>
-            <td><button (click)="createUser(name, firstName, address, email, tel)">Create</button></td>
+            <td><input pInputText type="text" disabled name="id" [(ngModel)]="id"></td>
+            <td><input pInputText type="text" name="name" [(ngModel)]="name"></td>
+            <td><input pInputText type="text" name="firstName" [(ngModel)]="firstName"></td>
+            <td><input pInputText type="text" name="address" [(ngModel)]="address"></td>
+            <td><input pInputText type="text" name="email" [(ngModel)]="email"></td>
+            <td><input pInputText type="text" name="tel" [(ngModel)]="tel"></td>
+            <td><p-button label="Create" (click)="createUser(name, firstName, address, email, tel)"></p-button><td>
         </tbody>
     </table>
     <p-message *ngIf="errorMessage" severity="error" text="{{errorMessage}}"></p-message>  
-    <p-message *ngIf="successMessage" severity="success" text="{{successMessage}}"></p-message>  
+    <p-message *ngIf="successMessage" severity="success" text="{{successMessage}}"></p-message>
 </p-panel>

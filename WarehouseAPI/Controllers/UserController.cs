@@ -17,10 +17,12 @@ namespace WarehouseAPI.Controllers
         }
 
         [HttpGet]
-        public List<User> GetUsers(string name, string firstName, string email, string address, string sort, int? page, int length = 100, string dir = "asc")
+        public List<User> GetUsers(string name, string firstName, string email, string address, string tel, string sort, int? id, int? page, int length = 100, string dir = "asc")
         {
             IQueryable<User> query = context.Users;
 
+            if (id.HasValue)
+                query = query.Where(d => d.Id == id);
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Name == name);
             if (!string.IsNullOrWhiteSpace(firstName))
@@ -29,6 +31,8 @@ namespace WarehouseAPI.Controllers
                 query = query.Where(d => d.Email == email);
             if (!string.IsNullOrWhiteSpace(address))
                 query = query.Where(d => d.Address == address);
+            if (!string.IsNullOrWhiteSpace(tel))
+                query = query.Where(d => d.Tel == tel);
 
             if (!string.IsNullOrWhiteSpace(sort))
             {

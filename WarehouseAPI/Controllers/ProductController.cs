@@ -22,10 +22,12 @@ namespace WarehouseAPI.Controllers
         }
 
         [HttpGet]
-        public List<Product> GetProducts(string name, string number, string location, string sort, int? page, int length = 2, string dir = "asc")
+        public List<Product> GetProducts(string name, string number, string location, string sort, int? id, int? page, int length = 2, string dir = "asc")
         {
             IQueryable<Product> query = context.Products;
 
+            if (id.HasValue)
+                query = query.Where(d => d.Id == id);
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Name == name);
             if (!string.IsNullOrWhiteSpace(number))
@@ -89,6 +91,18 @@ namespace WarehouseAPI.Controllers
         public IActionResult DeleteProduct(int id)
         {
             var product = context.Products.Find(id);
+            if (product == null)
+                return NotFound();
+
+            context.Products.Remove(product);
+            context.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteProduct([FromBody] Product deleteProduct)
+        {
+            var product = context.Products.Find(deleteProduct.Id);
             if (product == null)
                 return NotFound();
 

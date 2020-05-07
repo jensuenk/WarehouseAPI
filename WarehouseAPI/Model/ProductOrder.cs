@@ -14,13 +14,5 @@ namespace WarehouseAPI.Model
         public Product ProductId { get; set; }
         [Required]
         public Order OrderId { get; set; }
-        /*
-        [Required]
-        [Range(0.0, 1000.0)]
-        public double Amount { get; set; }
-        [Required]
-        [Range(0.0, 1000.0)]
-        public double TotalPrice { get; set; }
-        */
     }
 }

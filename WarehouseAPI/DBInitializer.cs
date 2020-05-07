@@ -19,18 +19,18 @@ namespace WarehouseAPI
                 {
                     Name = "Jansens",
                     FirstName = "Dirk",
-                    Email = "random@email.com",
-                    Address = "address here",
-                    Tel = "238271262891"
+                    Email = "jansensdirk@email.com",
+                    Address = "Heirbaan 71, 2070 Zwijndrecht",
+                    Tel = "0471831152"
                 };
                 context.Users.Add(user);
                 user = new User
                 {
                     Name = "Verhelst",
                     FirstName = "Frans",
-                    Email = "random@email.com",
-                    Address = "address here",
-                    Tel = "238271262891"
+                    Email = "fransverhelst@email.com",
+                    Address = "Jan Frans Faveletstraat 19, 9120 Kallo",
+                    Tel = "0476891456"
                 };
                 context.Users.Add(user);
             };
@@ -59,17 +59,6 @@ namespace WarehouseAPI
                     Location = "10A2B",
                     Price = 59.99
                 };
-                /*
-                context.Products.Add(product);
-                product = new Product
-                {
-                    Number = "83292",
-                    Name = "Lego Crane",
-                    Description = "placeholder description",
-                    Location = "11A1C",
-                    Price = 109.99
-                };
-                */
                 context.Products.Add(product);
             }
             ProductOrder productorder = null;
@@ -80,17 +69,6 @@ namespace WarehouseAPI
                     ProductId = product,
                     OrderId = order
                 };
-                /*
-                context.Products.Add(product);
-                product = new Product
-                {
-                    Number = "83292",
-                    Name = "Lego Crane",
-                    Description = "placeholder description",
-                    Location = "11A1C",
-                    Price = 109.99
-                };
-                */
                 context.ProductOrders.Add(productorder);
             }
 

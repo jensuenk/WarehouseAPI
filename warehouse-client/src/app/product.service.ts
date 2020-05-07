@@ -11,39 +11,40 @@ const httpOptions = {
 })
 
 export class ProductService {
-  private url = "https://192.168.0.158:45455/api/v1/product/";
+  private url = "https://192.168.0.158:45455/api/v1/product";
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<IProduct> {
-      return this.http.get<IProduct>(this.url)
-  }
-  getProduct(id: number): Observable<IProduct> {
-    return this.http.get<IProduct>(this.url + "id=" + id)
+  getProducts(args: string): Observable<IProduct> {
+    console.log(this.url + args);
+    return this.http.get<IProduct>(this.url + args)
   }
 
   createProduct(product: IProduct) {
-      let body = JSON.stringify(product);
-      return this.http.post(this.url, body, httpOptions);
-    }
+    let body = JSON.stringify(product);
+    delete body['id'];
+    console.log(product)
+    return this.http.post(this.url, body, httpOptions);
+  }
 
   updateProduct(product: IProduct) {
-      let body = JSON.stringify(product);
-      return this.http.put(this.url + product.id, body, httpOptions);
+    let body = JSON.stringify(product);
+    delete body['id'];
+    return this.http.put(this.url, body, httpOptions);
   }
 
   deleteProduct(product: IProduct) {
-      return this.http.delete(this.url + product.id);
+    return this.http.delete(this.url + "/" + product.id);
   }
 
   product: IProduct;
 }
 
 export interface IProduct {
-  id: number;
-  number: string;
-  name: string;
-  description: string;
-  location: string;
-  price: number;
+  id: number,
+  number: string,
+  name: string,
+  description: string,
+  location: string,
+  price: number
 }

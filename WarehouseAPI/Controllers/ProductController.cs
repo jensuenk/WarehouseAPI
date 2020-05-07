@@ -22,7 +22,7 @@ namespace WarehouseAPI.Controllers
         }
 
         [HttpGet]
-        public List<Product> GetProducts(string name, string number, string location, string sort, int? id, int? page, int length = 2, string dir = "asc")
+        public List<Product> GetProducts(string name, string number, string location, string sort, int? id, int? page, int length = 100, string dir = "asc")
         {
             IQueryable<Product> query = context.Products;
 

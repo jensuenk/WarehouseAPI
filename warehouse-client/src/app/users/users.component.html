@@ -59,6 +59,6 @@
             <td><p-button label="Create" (click)="createUser(name, firstName, address, email, tel)"></p-button><td>
         </tbody>
     </table>
-    <p-message *ngIf="errorMessage" severity="error" text="{{errorMessage}}"></p-message>  
-    <p-message *ngIf="successMessage" severity="success" text="{{successMessage}}"></p-message>
 </p-panel>
+<p-message *ngIf="errorMessage" severity="error" text="{{errorMessage}}"></p-message>  
+<p-message *ngIf="successMessage" severity="success" text="{{successMessage}}"></p-message>

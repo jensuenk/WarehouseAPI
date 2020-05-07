@@ -33,7 +33,7 @@ export class UserService {
   }
 
   deleteUser(user: IUser) {
-    return this.http.delete(this.url + user.id);
+    return this.http.delete(this.url + "/" + user.id);
   }
 
   user: IUser;

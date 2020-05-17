@@ -99,18 +99,6 @@ namespace WarehouseAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public IActionResult DeleteProduct([FromBody] Product deleteProduct)
-        {
-            var product = context.Products.Find(deleteProduct.Id);
-            if (product == null)
-                return NotFound();
-
-            context.Products.Remove(product);
-            context.SaveChanges();
-            return NoContent();
-        }
-
         [HttpPut]
         public IActionResult UpdateProduct([FromBody] Product updateProduct)
         {

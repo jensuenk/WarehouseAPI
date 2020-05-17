@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace WarehouseAPI
     {
         public static void Initialze(WarehouseContext context)
         {
+            // Delete DB if it exists (temp)
+            context.Database.EnsureDeleted();
+
             context.Database.EnsureCreated();
 
             User user = null;
@@ -60,17 +64,28 @@ namespace WarehouseAPI
                     Price = 59.99
                 };
                 context.Products.Add(product);
+                product = new Product
+                {
+                    Number = "72131",
+                    Name = "Lego Crane",
+                    Description = "placeholder description",
+                    Location = "11A4C",
+                    Price = 109.99
+                };
+                context.Products.Add(product);
             }
+            /*
             ProductOrder productorder = null;
             if (!context.ProductOrders.Any())
             {
                 productorder = new ProductOrder
                 {
-                    ProductId = product,
-                    OrderId = order
+                    ProductId = product.Id,
+                    OrderId = order.Id
                 };
                 context.ProductOrders.Add(productorder);
             }
+            */
 
             context.SaveChanges();
         }

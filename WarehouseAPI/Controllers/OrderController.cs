@@ -82,18 +82,6 @@ namespace WarehouseAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public IActionResult DeleteOrder([FromBody] Order deleteOrder)
-        {
-            var order = context.Orders.Find(deleteOrder.Id);
-            if (order == null)
-                return NotFound();
-
-            context.Orders.Remove(order);
-            context.SaveChanges();
-            return NoContent();
-        }
-
         [HttpPut]
         public IActionResult UpdateProduct([FromBody] Order updateOrder)
         {

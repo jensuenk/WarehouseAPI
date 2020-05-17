@@ -21,5 +21,6 @@ namespace WarehouseAPI.Model
         [Required]
         [Range(0.0, 100000.0)]
         public double Price { get; set; }
+        public ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }

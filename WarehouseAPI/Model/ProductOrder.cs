@@ -9,10 +9,12 @@ namespace WarehouseAPI.Model
     public class ProductOrder
     {
         [Key]
-        public int Id { get; set; }
+        public int ProductId { get; set; }
+        [Key]
+        public Product Product { get; set; }
         [Required]
-        public Product ProductId { get; set; }
+        public int OrderId { get; set; }
         [Required]
-        public Order OrderId { get; set; }
+        public Order Order { get; set; }
     }
 }

@@ -14,5 +14,7 @@ namespace WarehouseAPI.Model
         public User UserId { get; set; }
         [Required]
         public DateTime Date { get; set; }
+
+        public ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }

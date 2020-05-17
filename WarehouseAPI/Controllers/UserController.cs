@@ -92,18 +92,6 @@ namespace WarehouseAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public IActionResult DeleteUser([FromBody] User deleteUser)
-        {
-            var user = context.Users.Find(deleteUser.Id);
-            if (user == null)
-                return NotFound();
-
-            context.Users.Remove(user);
-            context.SaveChanges();
-            return NoContent();
-        }
-
         [HttpPut]
         public IActionResult UpdateUsert([FromBody] User updateUser)
         {

@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
   getUsers(urlArgs: string = "") {
     this.svc.getUsers(urlArgs).subscribe(
         result => {
-          this.users = result
+          this.users = result;
           return true;
         },
         error => {
@@ -46,6 +46,19 @@ export class UsersComponent implements OnInit {
     );
   }
 
+  getUser(id: string = "") {
+    this.svc.getUsersById(id).subscribe(
+        result => {
+          this.users = result
+          return true;
+        },
+        error => {
+          console.error("Error while retreiving user!");
+          this.showError(error.message)
+          return Observable.throw(error);
+        }
+    );
+  }
 
   createUser(name, firstName, address, email, tel) {
     let newUser: IUser = {

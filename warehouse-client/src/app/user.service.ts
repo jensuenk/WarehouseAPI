@@ -20,6 +20,11 @@ export class UserService {
     return this.http.get<IUser>(this.url + args)
   }
 
+  getUsersById(id: string): Observable<IUser> {
+    console.log(this.url + "/" + id);
+    return this.http.get<IUser>(this.url + "/" + id)
+  }
+
   createUser(user: IUser) {
     let body = JSON.stringify(user);
     delete body['id'];

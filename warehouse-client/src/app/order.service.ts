@@ -42,6 +42,6 @@ export class OrderService {
 
 export interface IOrder {
   id: number,
-  userId: IUser,
-  datetime: Date
+  user: IUser,
+  date: Date
 }

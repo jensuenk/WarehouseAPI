@@ -64,7 +64,7 @@ namespace WarehouseAPI.Controllers
                 query = query.Skip(page.Value * length);
             query = query.Take(length);
 
-            return query.ToList();
+            return query.Include(Product => Product.ProductOrders).ThenInclude(Order => Order.Order).ToList();
         }
 
         [Route("{id}")]

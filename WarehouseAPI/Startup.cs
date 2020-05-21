@@ -34,12 +34,15 @@ namespace WarehouseAPI
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             /*
-            // Zal bij model validation niet direct de error terug geven maar toch nog de bijhorende methode uitvoeren
+            // Run Controller code before model validation
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
             */
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddControllers();
             services.AddCors(options =>
             {

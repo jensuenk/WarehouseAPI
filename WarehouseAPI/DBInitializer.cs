@@ -11,8 +11,8 @@ namespace WarehouseAPI
     {
         public static void Initialze(WarehouseContext context)
         {
-            // Delete DB if it exists (temp)
-            context.Database.EnsureDeleted();
+            // Delete DB if it exists 
+            //context.Database.EnsureDeleted();
 
             context.Database.EnsureCreated();
 
@@ -39,19 +39,16 @@ namespace WarehouseAPI
                 context.Users.Add(user);
             };
 
-
             Order order = null;
             if (!context.Orders.Any())
             {
                 order = new Order
                 {
-                    //ProductId = product,
                     UserId = user,
-                    //Total = 1,
                     Date = DateTime.Now
                 };
-                context.Orders.Add(order);
             }
+
             Product product = null;
             if (!context.Products.Any())
             {
@@ -63,31 +60,27 @@ namespace WarehouseAPI
                     Location = "10A2B",
                     Price = 59.99
                 };
-                context.Products.Add(product);
-                product = new Product
-                {
-                    Number = "72131",
-                    Name = "Lego Crane",
-                    Description = "placeholder description",
-                    Location = "11A4C",
-                    Price = 109.99
-                };
-                context.Products.Add(product);
             }
-            /*
-            ProductOrder productorder = null;
-            if (!context.ProductOrders.Any())
-            {
-                productorder = new ProductOrder
-                {
-                    ProductId = product.Id,
-                    OrderId = order.Id
-                };
-                context.ProductOrders.Add(productorder);
-            }
-            */
 
-            context.SaveChanges();
+            if (!context.Products.Any() && !context.Orders.Any())
+            {
+                ProductOrder productOrder = new ProductOrder
+                {
+                    Product = product,
+                    Order = order
+                };
+                order.ProductOrders = new List<ProductOrder>();
+                order.ProductOrders.Add(productOrder);
+
+                product.ProductOrders = new List<ProductOrder>();
+                product.ProductOrders.Add(productOrder);
+                context.Products.Add(product);
+                context.Orders.Add(order);
+
+                context.ProductOrders.Add(productOrder);
+
+                context.SaveChanges();
+            }
         }
     }
 }

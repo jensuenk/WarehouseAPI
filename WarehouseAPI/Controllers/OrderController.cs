@@ -53,7 +53,7 @@ namespace WarehouseAPI.Controllers
         [HttpGet]
         public IActionResult GetOrder(int id)
         {
-            var order = context.Orders.Find(id);
+            var order = context.Orders.Include(d => d.UserId).SingleOrDefault(d => d.Id == id);
 
             if (order == null)
                 return NotFound();

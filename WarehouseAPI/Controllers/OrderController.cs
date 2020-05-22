@@ -62,6 +62,11 @@ namespace WarehouseAPI.Controllers
         [HttpPost]
         public IActionResult NewOrder([FromBody] Order newOrder)
         {
+            if (newOrder.Id != 0)
+                return BadRequest();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             context.Orders.Add(newOrder);
             context.SaveChanges();
             return Created("", newOrder);
@@ -83,8 +88,8 @@ namespace WarehouseAPI.Controllers
         [HttpPut]
         public IActionResult UpdateProduct([FromBody] Order updateOrder)
         {
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
             var order = context.Orders.Find(updateOrder.Id);
             if (order == null)

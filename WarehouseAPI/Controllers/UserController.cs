@@ -74,6 +74,11 @@ namespace WarehouseAPI.Controllers
         [HttpPost]
         public IActionResult NewUser([FromBody] User newUser)
         {
+            if (newUser.Id != 0)
+                return BadRequest();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             context.Users.Add(newUser);
             context.SaveChanges();
             return Created("", newUser);
@@ -95,6 +100,9 @@ namespace WarehouseAPI.Controllers
         [HttpPut]
         public IActionResult UpdateUsert([FromBody] User updateUser)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var user = context.Users.Find(updateUser.Id);
             if (user == null)
                 return NotFound();

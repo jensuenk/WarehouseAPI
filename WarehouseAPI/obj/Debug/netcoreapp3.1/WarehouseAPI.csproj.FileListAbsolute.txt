@@ -159,5 +159,12 @@
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+\\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.csproj.CoreCompileInputs.cache
 \\Mac\Home\Documents\School\2EA2\Cloud API\Project\WarehouseAPI\WarehouseAPI\obj\Debug\netcoreapp3.1\WarehouseAPI.MvcApplicationPartsAssemblyInfo.cache

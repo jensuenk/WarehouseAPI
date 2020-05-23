@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,7 +33,6 @@ namespace WarehouseAPI
                 Configuration.GetConnectionString("DefaultConnection")
             ));
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             
             // Run Controller code before model validation
             services.Configure<ApiBehaviorOptions>(options =>
@@ -44,6 +44,7 @@ namespace WarehouseAPI
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
             services.AddControllers();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -51,6 +52,13 @@ namespace WarehouseAPI
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                            .AddJwtBearer(options =>
+                            {
+                                options.Authority = "https://accounts.google.com/";
+                                options.Audience = "985688512068-4u35dr2vh2rii5376bj07991jo3ffbr3.apps.googleusercontent.com";
+                            });
 
         }
 
@@ -63,6 +71,8 @@ namespace WarehouseAPI
                     
                 
             }
+            app.UseAuthentication();
+
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
 

@@ -18,13 +18,16 @@ import { UsersComponent } from './users/users.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { OrdersComponent } from './orders/orders.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     UsersComponent,
-    OrdersComponent
+    OrdersComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -39,15 +42,17 @@ import { OrdersComponent } from './orders/orders.component';
     InputTextModule,
     ButtonModule,
     RouterModule.forRoot([
+      {path: "login", component: LoginPageComponent},
       {path: "users", component: UsersComponent},
       {path: "orders", component: OrdersComponent},
       {path: "products", component: ProductsComponent},
       {path: "", redirectTo: "users", pathMatch: 'full'},
       {path: "**", redirectTo: "users"},
-    ], {useHash: true})
+    ])
   ],
   providers: [
-    ProductService
+    ProductService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

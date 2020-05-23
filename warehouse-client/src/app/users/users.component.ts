@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit {
 
   constructor(private svc : UserService) { }
 
+
   ngOnInit() {
     this.getUsers();
     this.errorMessage = "";

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,11 +14,15 @@ const httpOptions = {
 export class UserService {
   private url = "https://192.168.0.158:45455/api/v1/user";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookie: CookieService) { }
 
   getUsers(args: string): Observable<IUser> {
     console.log(this.url + args);
-    return this.http.get<IUser>(this.url + args)
+    return this.http.get<IUser>(this.url + args, {
+      headers: {
+        'Authorization': "Bearer " + this.cookie.get('idToken')
+      }
+    })
   }
 
   getUsersById(id: string): Observable<IUser> {

@@ -20,6 +20,9 @@ import { ButtonModule } from 'primeng/button';
 import { OrdersComponent } from './orders/orders.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CookieService } from 'ngx-cookie-service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {CardModule} from 'primeng/card';
+import {TabViewModule} from 'primeng/tabview';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { CookieService } from 'ngx-cookie-service';
     ProductsComponent,
     UsersComponent,
     OrdersComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,14 +45,8 @@ import { CookieService } from 'ngx-cookie-service';
     MessageModule,
     InputTextModule,
     ButtonModule,
-    RouterModule.forRoot([
-      {path: "login", component: LoginPageComponent},
-      {path: "users", component: UsersComponent},
-      {path: "orders", component: OrdersComponent},
-      {path: "products", component: ProductsComponent},
-      {path: "", redirectTo: "users", pathMatch: 'full'},
-      {path: "**", redirectTo: "users"},
-    ])
+    CardModule,
+    TabViewModule
   ],
   providers: [
     ProductService,

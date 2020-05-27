@@ -7,9 +7,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AuthService {
 
-  private clientId: string = "985688512068-4u35dr2vh2rii5376bj07991jo3ffbr3.apps.googleusercontent.com";
-  private clientSecret: string = "tsmtoXytEM84ZkVZsLHPHkFg";
-  private redirectUrl: string = "http%3A%2F%2Flocalhost%3A4200%2Flogin";
+  clientId: string = "985688512068-4u35dr2vh2rii5376bj07991jo3ffbr3.apps.googleusercontent.com";
+  clientSecret: string = "tsmtoXytEM84ZkVZsLHPHkFg";
+  redirectUrl: string = "http%3A%2F%2Flocalhost%3A4200%2Flogin";
+
+  currentUser: IUser;
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
 
@@ -20,7 +22,7 @@ export class AuthService {
   
   getUserInfo() {
     let url = "https://www.googleapis.com/userinfo/v2/me"
-    return this.http.get<IProfileInfo>(url, {
+    return this.http.get<IUser>(url, {
       headers:{
         "Authorization": "Bearer " + this.cookie.get("accessToken")
       }
@@ -35,7 +37,7 @@ export interface IResponse {
   token_type: string,
   id_token: string;
 }
-export interface IProfileInfo {
+export interface IUser {
   id: number;
   name: string;
   family_name: string;

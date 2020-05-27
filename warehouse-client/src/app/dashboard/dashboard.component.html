@@ -1,0 +1,17 @@
+<p-tabView>
+    <p-tabPanel header="Dashboard">
+        <h1>Warehouse Admin Panel</h1>
+        <p>Welcome {{user.name}} to the warehouse admin panel.</p>
+        <p>Here you can view, edit and delete users, products and orders. Navigate with the tabs above to get started.</p>
+
+    </p-tabPanel>
+    <p-tabPanel header="Users">
+        <app-users></app-users>
+    </p-tabPanel>
+    <p-tabPanel header="Products">
+        <app-products></app-products>
+    </p-tabPanel>
+    <p-tabPanel header="Orders">
+        <app-orders></app-orders>
+    </p-tabPanel>
+</p-tabView>

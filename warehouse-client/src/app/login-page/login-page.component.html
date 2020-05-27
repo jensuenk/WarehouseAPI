@@ -1,4 +1,9 @@
-<p>login-page works!</p>
-<button (click)="googleRedirect()">Login</button>
-
-<p *ngIf="currentUser">{{currentUser.name}}</p>
+<div>
+<p-card header="Warehouse Admin Panel">
+        Log-in below with your Google account to get access to the admin dashboard.
+    
+    <p-footer>
+        <p-button (click)="loginRedirect()" label="Login met Google" ></p-button>
+    </p-footer>
+</p-card>
+</div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService, IProfileInfo } from '../auth.service';
+import { Router } from '@angular/router';
+import { AuthService, IUser } from '../auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,7 +11,7 @@ import { AuthService, IProfileInfo } from '../auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private cookie: CookieService, private auth: AuthService) { 
+  constructor(private route: ActivatedRoute, private cookie: CookieService, private auth: AuthService, private router: Router) { 
     this.route.queryParamMap.subscribe(par => {
       if (par.get("code") != null) {
         console.log("Code received");
@@ -24,20 +25,15 @@ export class LoginPageComponent implements OnInit {
     })
   }
 
-  private currentUser: IProfileInfo
-
   ngOnInit() {
     this.auth.getUserInfo().subscribe(user => {
-      this.currentUser = user
+      this.auth.currentUser = user
+      this.router.navigate(['/dashboard']);
     })
   }
 
-  private clientId: string = "985688512068-4u35dr2vh2rii5376bj07991jo3ffbr3.apps.googleusercontent.com";
-  private clientSecret: string = "tsmtoXytEM84ZkVZsLHPHkFg";
-  private redirectUrl: string = "http%3A%2F%2Flocalhost%3A4200%2Flogin";
-
-  googleRedirect() {
-    document.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + this.clientId + "&redirect_uri=" + this.redirectUrl + "&scope=profile" + "&response_type=code"
+  loginRedirect() {
+    document.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + this.auth.clientId + "&redirect_uri=" + this.auth.redirectUrl + "&scope=profile" + "&response_type=code"
   }
    
 }

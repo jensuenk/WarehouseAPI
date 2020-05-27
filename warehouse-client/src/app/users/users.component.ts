@@ -48,7 +48,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUser(id: string = "") {
-    this.svc.getUsersById(id).subscribe(
+    this.svc.getUserById(id).subscribe(
         result => {
           this.users = result
           return true;

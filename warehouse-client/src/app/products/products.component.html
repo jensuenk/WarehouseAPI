@@ -29,7 +29,8 @@
         </tbody>
     </table>
 </p-panel>
-<p-panel header="Delete Product" *ngIf="products">
+<div class="space"></div>
+<p-panel header="Create Product" *ngIf="products">
     <table>
         <tbody>
             <td><input pInputText type="text" disabled name="id" [(ngModel)]="id"></td>
@@ -42,5 +43,12 @@
         </tbody>
     </table>
 </p-panel>
+<div class="space"></div>
 <p-message *ngIf="errorMessage" severity="error" text="{{errorMessage}}"></p-message>  
 <p-message *ngIf="successMessage" severity="success" text="{{successMessage}}"></p-message>
+
+<div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+    <div *ngFor="let error of errors">
+    <p-message severity="error" text="{{ error }}"></p-message>  
+    </div>
+</div>

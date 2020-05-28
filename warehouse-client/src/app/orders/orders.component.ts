@@ -30,7 +30,6 @@ export class OrdersComponent implements OnInit {
         error => {
           console.error("Error while retreiving orders!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }
@@ -53,7 +52,6 @@ export class OrdersComponent implements OnInit {
         error => {
           console.error("Error creating order!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }
@@ -69,7 +67,6 @@ export class OrdersComponent implements OnInit {
         error => {
           console.error("Error saving order!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }
@@ -85,7 +82,6 @@ export class OrdersComponent implements OnInit {
         error => {
           console.error("Error deleting order!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }

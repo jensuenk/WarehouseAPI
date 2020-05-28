@@ -1,5 +1,6 @@
 <h2>Users Database</h2>
 <p>This is a list of all users registerd on the website. You can sort them by the fields below, edit, delete and add users.</p>
+<div class="space"></div>
 <p-panel header="Search filter" *ngIf="users">
     <table>
         <tbody>
@@ -21,6 +22,7 @@
         </tbody>
     </table>
 </p-panel>
+<div class="space"></div>
 <p-panel header="Users List" *ngIf="users">
     <table>
         <thead>
@@ -49,6 +51,7 @@
         </tbody>
     </table>
 </p-panel>
+<div class="space"></div>
 <p-panel header="Create User" *ngIf="users">
     <table>
         <tbody>
@@ -62,6 +65,7 @@
         </tbody>
     </table>
 </p-panel>
+<div class="space"></div>
 <p-panel header="User Email Verifier (3rd party API)" *ngIf="users">
     <p>Enter an user id to verify its email:</p>
     <input pInputText type="number" name="emailId" [(ngModel)]="emailId">
@@ -74,5 +78,11 @@
         <p-message *ngIf="emailResult.smtp_check == false" severity="warn" text="SMTP-Check failed for this email"></p-message>  
     </div>
 </p-panel>
+<div class="space"></div>
 <p-message *ngIf="errorMessage" severity="error" text="{{errorMessage}}"></p-message>  
 <p-message *ngIf="successMessage" severity="success" text="{{successMessage}}"></p-message>
+<div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+    <div *ngFor="let error of errors">
+    <p-message severity="error" text="{{ error }}"></p-message>  
+    </div>
+</div>

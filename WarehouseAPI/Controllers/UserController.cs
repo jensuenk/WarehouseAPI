@@ -76,6 +76,16 @@ namespace WarehouseAPI.Controllers
         [HttpPost]
         public IActionResult NewUser([FromBody] User newUser)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            User existingEmail = context.Users.Where(u => u.Email == newUser.Email).FirstOrDefault();
+            if (existingEmail != null)
+            {
+                ModelState.AddModelError("Email", "This email already exists");
+                return BadRequest(ModelState);
+            }
+
             if (newUser.Id != 0)
                 return BadRequest();
             if (!ModelState.IsValid)
@@ -104,6 +114,14 @@ namespace WarehouseAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
+            User existingEmail = context.Users.Where(u => u.Email == updateUser.Email).FirstOrDefault();
+            if (existingEmail != null)
+            {
+                ModelState.AddModelError("Email", "This email already exists");
+                return BadRequest(ModelState);
+            }
+
 
             var user = context.Users.Find(updateUser.Id);
             if (user == null)

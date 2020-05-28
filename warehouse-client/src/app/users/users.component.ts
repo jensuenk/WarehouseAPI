@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IUser, UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { EmailValidationService, IEmailResult } from '../email-validation.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -12,7 +13,10 @@ import { EmailValidationService, IEmailResult } from '../email-validation.servic
 export class UsersComponent implements OnInit {
   users : IUser;
   errorMessage: string
-  successMessage: string
+  successfulSave: boolean;
+  successMessage: string;
+  errors: string[];
+
 
   emailId: number
   user: IUser
@@ -28,6 +32,7 @@ export class UsersComponent implements OnInit {
   filterPage: string = "";
   filterLength: string = "";
   filterDir: string = "";
+
   constructor(private svc : UserService, private emailValidation: EmailValidationService) { }
 
 
@@ -35,6 +40,7 @@ export class UsersComponent implements OnInit {
     this.getUsers();
     this.errorMessage = "";
     this.successMessage = "";
+    this.errors = [];
   }
 
   getUsers(urlArgs: string = "") {
@@ -46,7 +52,6 @@ export class UsersComponent implements OnInit {
         error => {
           console.error("Error while retreiving users!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }
@@ -60,7 +65,6 @@ export class UsersComponent implements OnInit {
         error => {
           console.error("Error while retreiving user!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }
@@ -79,12 +83,18 @@ export class UsersComponent implements OnInit {
           // refresh the list
           this.getUsers();
           this.showSuccess("Successfully created a new user!")
+          this.successfulSave = true
           return true;
-        },
-        error => {
+        },error => {
           console.error("Error creating user!");
-          this.showError(error.message)
-          return Observable.throw(error);
+          this.successfulSave = false
+          if (error.status === 400) {
+            const validationErrors = error.error;
+            Object.keys(validationErrors).forEach(prop => {
+              console.log(validationErrors[prop])
+              this.errors.push(validationErrors[prop])
+            });
+          }
         }
     );
   }
@@ -95,13 +105,20 @@ export class UsersComponent implements OnInit {
           // refresh the list
           this.getUsers();
           this.showSuccess("Successfully updated the user!")
+          this.successfulSave = true
           return true;
         },
-        error => {
-          console.error("Error saving product!");
-          this.showError(error.message)
-          return Observable.throw(error);
+       error => {
+        console.error("Error saving user!");
+        this.successfulSave = false
+        if (error.status === 400) {
+          const validationErrors = error.error;
+          Object.keys(validationErrors).forEach(prop => {
+            console.log(validationErrors[prop])
+            this.errors.push(validationErrors[prop])
+          });
         }
+      }
     );
   }
     
@@ -116,7 +133,6 @@ export class UsersComponent implements OnInit {
         error => {
           console.error("Error deleting user!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }
@@ -184,14 +200,12 @@ export class UsersComponent implements OnInit {
             error => {
               console.error("Error while retreiving user!");
               this.showError(error.message)
-              return Observable.throw(error);
             }
           );
         },
         error => {
           console.error("Error while retreiving user!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }

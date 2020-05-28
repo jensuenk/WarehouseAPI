@@ -11,7 +11,10 @@ import { Observable } from 'rxjs';
 export class ProductsComponent implements OnInit {
   products : IProduct;
   errorMessage: string
+  successfulSave: boolean;
   successMessage: string;
+  errors: string[];
+
 
   constructor(private svc : ProductService) { }
 
@@ -19,6 +22,7 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
     this.errorMessage = "";
     this.successMessage = "";
+    this.errors = [];
   }
 
   getProducts(urlArgs: string = "") {
@@ -30,7 +34,6 @@ export class ProductsComponent implements OnInit {
         error => {
           console.error("Error while retreiving products!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }
@@ -50,12 +53,19 @@ export class ProductsComponent implements OnInit {
           // refresh the list
           this.getProducts();
           this.showSuccess("Successfully created a new product!")
+          this.successfulSave = true
           return true;
         },
         error => {
-          console.error("Error creating product!");
-          this.showError(error.message)
-          return Observable.throw(error);
+          console.error("Error saving product!");
+          this.successfulSave = false
+          if (error.status === 400) {
+            const validationErrors = error.error;
+            Object.keys(validationErrors).forEach(prop => {
+              console.log(validationErrors[prop])
+              this.errors.push(validationErrors[prop])
+            });
+          }
         }
     );
   }
@@ -66,12 +76,19 @@ export class ProductsComponent implements OnInit {
           // refresh the list
           this.getProducts();
           this.showSuccess("Successfully updated the product!")
+          this.successfulSave = true
           return true;
         },
         error => {
           console.error("Error saving product!");
-          this.showError(error.message)
-          return Observable.throw(error);
+          this.successfulSave = false
+          if (error.status === 400) {
+            const validationErrors = error.error;
+            Object.keys(validationErrors).forEach(prop => {
+              console.log(validationErrors[prop])
+              this.errors.push(validationErrors[prop])
+            });
+          }
         }
     );
   }
@@ -87,7 +104,6 @@ export class ProductsComponent implements OnInit {
         error => {
           console.error("Error deleting product!");
           this.showError(error.message)
-          return Observable.throw(error);
         }
     );
   }

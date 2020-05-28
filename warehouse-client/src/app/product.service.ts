@@ -12,7 +12,7 @@ const httpOptions = {
 })
 
 export class ProductService {
-  private url = "https://192.168.0.158:45455/api/v1/product";
+  private url = "https://warehouseapi20200528053515.azurewebsites.net/api/v1/product";
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
 

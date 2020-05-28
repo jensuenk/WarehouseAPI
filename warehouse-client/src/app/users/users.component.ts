@@ -169,7 +169,7 @@ export class UsersComponent implements OnInit {
   }
 
   checkEmail(id: number) {
-    if (id == 0) {
+    if (id == 0 || id == null) {
       return
     }
     this.svc.getUserById(id).subscribe(

@@ -20,6 +20,10 @@ export class LoginPageComponent implements OnInit {
         this.auth.postGoogle(code).subscribe(response => {
           this.cookie.set("accessToken", response.access_token);
           this.cookie.set("idToken", response.id_token);
+          this.auth.getUserInfo().subscribe(user => {
+            this.auth.currentUser = user
+            this.router.navigate(['/dashboard']);
+          })
         })
       }
     })

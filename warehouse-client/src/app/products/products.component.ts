@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
   getProducts(urlArgs: string = "") {
     this.svc.getProducts(urlArgs).subscribe(
         result => {
+          this.errors = [];
           this.products = result
           return true;
         },
@@ -50,6 +51,7 @@ export class ProductsComponent implements OnInit {
     }
     this.svc.createProduct(newProduct).subscribe(
         data => {
+          this.errors = [];
           // refresh the list
           this.getProducts();
           this.showSuccess("Successfully created a new product!")
@@ -57,6 +59,7 @@ export class ProductsComponent implements OnInit {
           return true;
         },
         error => {
+          this.errors = [];
           console.error("Error saving product!");
           this.successfulSave = false
           if (error.status === 400) {
@@ -73,6 +76,7 @@ export class ProductsComponent implements OnInit {
   updateProduct(updatedProduct) {
     this.svc.updateProduct(updatedProduct).subscribe(
         data => {
+          this.errors = [];
           // refresh the list
           this.getProducts();
           this.showSuccess("Successfully updated the product!")
@@ -80,6 +84,7 @@ export class ProductsComponent implements OnInit {
           return true;
         },
         error => {
+          this.errors = [];
           console.error("Error saving product!");
           this.successfulSave = false
           if (error.status === 400) {
@@ -96,6 +101,7 @@ export class ProductsComponent implements OnInit {
   deleteProduct(product) {
     this.svc.deleteProduct(product).subscribe(
         data => {
+          this.errors = [];
           // refresh the list
           this.getProducts();
           this.showSuccess("Successfully deleted the product!")

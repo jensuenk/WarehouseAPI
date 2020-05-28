@@ -46,6 +46,7 @@ export class UsersComponent implements OnInit {
   getUsers(urlArgs: string = "") {
     this.svc.getUsers(urlArgs).subscribe(
         result => {
+          this.errors = [];
           this.users = result;
           return true;
         },
@@ -59,6 +60,7 @@ export class UsersComponent implements OnInit {
   getUser(id: number) {
     this.svc.getUserById(id).subscribe(
         result => {
+          this.errors = [];
           this.user = result
           return true;
         },
@@ -80,12 +82,14 @@ export class UsersComponent implements OnInit {
     }
     this.svc.createUser(newUser).subscribe(
         data => {
+          this.errors = [];
           // refresh the list
           this.getUsers();
           this.showSuccess("Successfully created a new user!")
           this.successfulSave = true
           return true;
         },error => {
+          this.errors = [];
           console.error("Error creating user!");
           this.successfulSave = false
           if (error.status === 400) {
@@ -102,6 +106,7 @@ export class UsersComponent implements OnInit {
   updateUser(updatedUser) {
     this.svc.updateUser(updatedUser).subscribe(
         data => {
+          this.errors = [];
           // refresh the list
           this.getUsers();
           this.showSuccess("Successfully updated the user!")
@@ -109,6 +114,7 @@ export class UsersComponent implements OnInit {
           return true;
         },
        error => {
+        this.errors = [];
         console.error("Error saving user!");
         this.successfulSave = false
         if (error.status === 400) {
@@ -125,6 +131,7 @@ export class UsersComponent implements OnInit {
   deleteUser(user) {
     this.svc.deleteUser(user).subscribe(
         data => {
+          this.errors = [];
           // refresh the list
           this.getUsers();
           this.showSuccess("Successfully deleted the user!")

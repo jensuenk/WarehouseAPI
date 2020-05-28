@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser, UserService } from '../user.service';
 import { Observable } from 'rxjs';
+import { EmailValidationService, IEmailResult } from '../email-validation.service';
 
 
 @Component({
@@ -13,6 +14,10 @@ export class UsersComponent implements OnInit {
   errorMessage: string
   successMessage: string
 
+  emailId: number
+  user: IUser
+  emailResult: IEmailResult
+
   filterId: string = "";
   filterName: string = "";
   filterFirstName: string = "";
@@ -23,8 +28,7 @@ export class UsersComponent implements OnInit {
   filterPage: string = "";
   filterLength: string = "";
   filterDir: string = "";
-
-  constructor(private svc : UserService) { }
+  constructor(private svc : UserService, private emailValidation: EmailValidationService) { }
 
 
   ngOnInit() {
@@ -47,10 +51,10 @@ export class UsersComponent implements OnInit {
     );
   }
 
-  getUser(id: string = "") {
+  getUser(id: number) {
     this.svc.getUserById(id).subscribe(
         result => {
-          this.users = result
+          this.user = result
           return true;
         },
         error => {
@@ -162,5 +166,33 @@ export class UsersComponent implements OnInit {
     urlArgs = urlArgs.substring(0, urlArgs.length - 1);
     this.getUsers(urlArgs);
     
+  }
+
+  checkEmail(id: number) {
+    if (id == 0) {
+      return
+    }
+    this.svc.getUserById(id).subscribe(
+        result => {
+          this.user = result
+          console.log("Checking email")
+          this.emailValidation.checkEmail(this.user.email).subscribe(
+            result => {
+              this.emailResult = result
+              return true;
+            },
+            error => {
+              console.error("Error while retreiving user!");
+              this.showError(error.message)
+              return Observable.throw(error);
+            }
+          );
+        },
+        error => {
+          console.error("Error while retreiving user!");
+          this.showError(error.message)
+          return Observable.throw(error);
+        }
+    );
   }
 }

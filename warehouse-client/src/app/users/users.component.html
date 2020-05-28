@@ -62,5 +62,17 @@
         </tbody>
     </table>
 </p-panel>
+<p-panel header="User Email Verifier (3rd party API)" *ngIf="users">
+    <p>Enter an user id to verify its email:</p>
+    <input pInputText type="number" name="emailId" [(ngModel)]="emailId">
+    <p-button label="Check Email" (click)="checkEmail(emailId)"></p-button>
+    <div *ngIf="emailResult">
+        <p-message *ngIf="emailResult.format_valid == true" severity="success" text="The email format is valid"></p-message>  
+        <p-message *ngIf="emailResult.format_valid == false" severity="error" text="The email format is invalid"></p-message>  
+        <p-message *ngIf="emailResult.disposable == true" severity="warn" text="The email is a disposable email"></p-message>  
+        <p-message *ngIf="emailResult.mx_found == false" severity="warn" text="No MX-Records found for this email"></p-message>  
+        <p-message *ngIf="emailResult.smtp_check == false" severity="warn" text="SMTP-Check failed for this email"></p-message>  
+    </div>
+</p-panel>
 <p-message *ngIf="errorMessage" severity="error" text="{{errorMessage}}"></p-message>  
 <p-message *ngIf="successMessage" severity="success" text="{{successMessage}}"></p-message>

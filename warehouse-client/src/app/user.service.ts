@@ -21,7 +21,7 @@ export class UserService {
     })
   }
 
-  getUserById(id: string): Observable<IUser> {
+  getUserById(id: number): Observable<IUser> {
     console.log(this.url + "/" + id);
     return this.http.get<IUser>(this.url + "/" + id, {
       headers: {

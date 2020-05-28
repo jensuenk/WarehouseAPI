@@ -31,7 +31,7 @@ import {TabViewModule} from 'primeng/tabview';
     UsersComponent,
     OrdersComponent,
     LoginPageComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
